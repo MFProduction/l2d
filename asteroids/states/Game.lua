@@ -1,22 +1,26 @@
-local Text = require("../components/text")
+local love = require("love") -- we now require love
+
+local Text = require("../components/Text") -- we are adding text
+
 function Game()
 	return {
 		state = {
 			menu = false,
-			running = true,
 			paused = false,
+			running = true,
 			ended = false,
 		},
+
 		changeGameState = function(self, state)
 			self.state.menu = state == "menu"
-			self.state.running = state == "running"
 			self.state.paused = state == "paused"
+			self.state.running = state == "running"
 			self.state.ended = state == "ended"
 		end,
 
+		-- we create the basics of the draw function
 		draw = function(self, faded)
-			love.graphics.printf("test2", 200, 200, 200, "center")
-			if faded == true then
+			if faded then
 				Text(
 					"PAUSED",
 					0,
@@ -25,7 +29,8 @@ function Game()
 					false,
 					false,
 					love.graphics.getWidth(),
-					"center"
+					"center",
+					1
 				):draw()
 			end
 		end,
@@ -33,3 +38,4 @@ function Game()
 end
 
 return Game
+
