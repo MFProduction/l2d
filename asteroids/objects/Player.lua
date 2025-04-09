@@ -37,9 +37,11 @@ function Player(debugging)
 			)
 		end,
 
-		draw = function(self)
+		draw = function(self, faded)
 			local opacity = 1
-
+			if faded then
+				opacity = 0.5
+			end
 			if self.thrusting then -- only show the flame whenever we thrust forwards
 				-- create flame resizing animation
 				if not self.thrust.big_flame then
